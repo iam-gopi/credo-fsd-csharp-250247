@@ -21,15 +21,64 @@ namespace Credo_fsd;
 class Employee
 {
     public string Name { get; set; }
-    public string Department { get; set; }
+    public int DepartmentId { get; set; }
     public decimal Salary { get; set; }
+}
+
+class Department
+{
+    public string Name { get; set; }
+    public int Id { get; set; }
 }
 
 public class LinqExample
 {
     public static void Main(string[] args)
     {
+         var employees = new List<Employee>()
+        {
+            new Employee() { Name = "Ärun", DepartmentId = 1, Salary = 120000 },
+            new Employee() { Name = "Merlin", DepartmentId = 2, Salary = 120500 },
+            new Employee() { Name = "Karthick", DepartmentId = 1, Salary = 170000 },
+            new Employee() { Name = "Athithya", DepartmentId = 2, Salary = 190780 },
+            new Employee() { Name = "Gopi", DepartmentId = 3, Salary = 137900 }
+        };
+        var department = new List<Department>()
+        {
+            new Department(){ Name = "IT", Id=1},
+            new Department(){ Name = "HR", Id=2},
+            new Department(){ Name = "BPO", Id=3},
+        };
+
+
+        var r = from e in employees
+            join d in department
+                on e.DepartmentId equals d.Id
+            select new
+            {
+                EmployeeName = e.Name,
+                DepartmentName = d.Name
+            };
         
+        foreach (var i in r)
+        {
+            Console.WriteLine(i.EmployeeName + " " + i.DepartmentName);
+        }
+
+        // var a = new List<int>() { 1,2,3,4,5,6,4,5,6};
+        // var r = a.Distinct();
+
+        // var a = new List<int>() { 1,2,3,4,5 };
+        // var b = new List<int>() { 4,5,6,7,8 };
+        //
+        // // var r = a.Union(b);
+        // // var r = a.Intersect(b);
+        // var r = a.Except(b);
+        // foreach (var i in r)
+        // {
+        //     Console.WriteLine(i);
+        // }
+
         // public class ProductDBContext: DBContext
         // {
         //     
@@ -39,26 +88,26 @@ public class LinqExample
         //
         // products.where()
 
-         var e = new List<Employee>()
-        {
-            new Employee() { Name = "Ärun", Department = "ÏT", Salary = 120000 },
-            new Employee() { Name = "Merlin", Department = "HR", Salary = 120500 },
-            new Employee() { Name = "Karthick", Department = "ÏT", Salary = 170000 },
-            new Employee() { Name = "Athithya", Department = "HR", Salary = 190780 },
-            new Employee() { Name = "Gopi", Department = "BPO", Salary = 137900 }
-        };
-        
-        var p = e.Skip(200).Take(100).ToList();
-
-        var eg= e.GroupBy(x => x.Department);
-        foreach (var item in eg)
-        {
-            Console.WriteLine(item);
-            foreach (var i in item)
-            {
-                Console.WriteLine(i.Name);
-            }
-        }
+        //  var e = new List<Employee>()
+        // {
+        //     new Employee() { Name = "Ärun", Department = "ÏT", Salary = 120000 },
+        //     new Employee() { Name = "Merlin", Department = "HR", Salary = 120500 },
+        //     new Employee() { Name = "Karthick", Department = "ÏT", Salary = 170000 },
+        //     new Employee() { Name = "Athithya", Department = "HR", Salary = 190780 },
+        //     new Employee() { Name = "Gopi", Department = "BPO", Salary = 137900 }
+        // };
+        //
+        // var p = e.Skip(200).Take(100).ToList();
+        //
+        // var eg= e.GroupBy(x => x.Department);
+        // foreach (var item in eg)
+        // {
+        //     Console.WriteLine(item);
+        //     foreach (var i in item)
+        //     {
+        //         Console.WriteLine(i.Name);
+        //     }
+        // }
 
 
         // var students = new List<Student>()
