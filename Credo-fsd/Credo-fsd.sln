@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credo-fsd", "Credo-fsd\Credo-fsd.csproj", "{2821F5AD-B803-4809-83BA-0A0B13F218EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API1.0", "API1.0\API1.0.csproj", "{70352EC0-8170-4821-B2E3-CF4C068EC954}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{2821F5AD-B803-4809-83BA-0A0B13F218EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2821F5AD-B803-4809-83BA-0A0B13F218EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2821F5AD-B803-4809-83BA-0A0B13F218EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70352EC0-8170-4821-B2E3-CF4C068EC954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70352EC0-8170-4821-B2E3-CF4C068EC954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70352EC0-8170-4821-B2E3-CF4C068EC954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70352EC0-8170-4821-B2E3-CF4C068EC954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

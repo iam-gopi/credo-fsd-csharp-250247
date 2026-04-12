@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Credo-fsd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+338bf6f2fe9bfe93dfe52d3b85fbfd233d19fb49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b53d9db9be640e75023e508f3f7dc491e7cb2e85")]
 [assembly: System.Reflection.AssemblyProductAttribute("Credo-fsd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Credo-fsd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
