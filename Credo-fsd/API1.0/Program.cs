@@ -1,32 +1,39 @@
 using System.Text;
 using API1._0;
+using API1._0.Controllers;
 using API1._0.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Mysqlx.Expect;
+using Student = API1._0.Services.Student;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = "server=localhost;user id=root;password=;database=fsdclass";
 
-builder.Services.AddAuthentication(o =>
-{
-    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateIssuerSigningKey =  true,
-        ValidIssuer = builder.Configuration.GetSection("Jwt")["Issuer"],
-        ValidAudience = builder.Configuration.GetSection("Jwt")["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt")["Key"]))
-    };
-});
+builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString,
+    ServerVersion.AutoDetect(connectionString)));
 
-builder.Services.AddAuthorization();
+// builder.Services.AddAuthentication(o =>
+// {
+//     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// }).AddJwtBearer(options =>
+// {
+//     options.RequireHttpsMetadata = false;
+//     options.TokenValidationParameters = new TokenValidationParameters()
+//     {
+//         ValidateIssuer = true,
+//         ValidateAudience = true,
+//         ValidateIssuerSigningKey =  true,
+//         ValidIssuer = builder.Configuration.GetSection("Jwt")["Issuer"],
+//         ValidAudience = builder.Configuration.GetSection("Jwt")["Audience"],
+//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt")["Key"]))
+//     };
+// });
+
+// builder.Services.AddAuthorization();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -57,8 +64,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 app.MapControllers();
 
