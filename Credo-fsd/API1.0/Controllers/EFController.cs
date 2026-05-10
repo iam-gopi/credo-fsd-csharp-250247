@@ -63,7 +63,7 @@ public class EFController(AppDbContext context) : ControllerBase
         
         // SP 
         // var students111 = context.Student.FromSqlRaw("call sp_name({0},{1})", 1,2); // Select
-        var students111 = context.Student.ex("call sp_name({0},{1})", 1,2);
+        var students111 = context.Student.FromSqlRaw("call sp_name({0},{1})", 1,2);
         
         if(students == null)
             return NotFound();
@@ -122,8 +122,21 @@ public class Department
     public string? Name { get; set; }
 }
 
+public class Semester
+{
+    [Key]
+    public int Id { get; set; }
+    [Column("SemesterName", TypeName = "nvarchar(100)")]
+    [Required]
+    [MaxLength(100)]
+    public string? Name { get; set; }
+
+    public string No { get; set; }
+}
+
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Student> Student { get; set; }
     public DbSet<Department> Department { get; set; }
+    public DbSet<Semester> Semester { get; set; }
 }
